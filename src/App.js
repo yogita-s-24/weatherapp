@@ -63,12 +63,9 @@ export default function App() {
           <h3 className="temperature-card shadow ">
             Humidity <HumidityCard className="text fs-5" humidity={`${weatherData?.main?.humidity}%`} />
           </h3>
-
         </div>
-
-        {/* <img src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}@2x.png`} />  */}
-        {/* <h5>Visibility :{weatherData?.visibility} meters</h5> */}
       </div>
+     
     </>
   );
 }
