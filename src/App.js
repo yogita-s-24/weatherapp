@@ -3,17 +3,19 @@ import axios from "axios";
 import "./App.css";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
 import { VisibilityCard } from "./components/WeatherCard/WeatherCard";
+import { HumidityCard } from "./components/WeatherCard/WeatherCard";
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({});
   const [city, setCity] = useState("Pune");
-  // const [weatherDescription, setWeatherDescription] = useState("");
+ const [weatherDescription, setWeatherDescription] = useState("");
 
   async function loadWeatherData() {
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0405d3c38f14f5a2f80d54d0f9357a7f`
       );
+
       setWeatherData(response.data);
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -25,14 +27,14 @@ export default function App() {
     loadWeatherData();
   }, [city]);
 
-  // useEffect(() => {
-  //     setWeatherDescription(`${weatherData?.weather?.[0]?.main} (${weatherData?.weather?.[0]?.description})`);
-  // }, [weatherData]);
+  useEffect(() => {
+      setWeatherDescription(`${weatherData?.weather?.[0]?.main} (${weatherData?.weather?.[0]?.description})`);
+  }, [weatherData]);
 
   return (
     <>
-      <div className="text-center content shadow-lg">
-        <h1 className="text-center mt-4">Weather App</h1>
+      <div className="text-center content ">
+        <h1 className="text-center mt-2">🌧 Weather App 🌧</h1>
 
         <input
           type="text"
@@ -43,25 +45,28 @@ export default function App() {
           }}
         />
 
-        <h2 className="mt-5">{weatherData.name}</h2>
-        <div className="d-flex justify-content-evenly mt-4">
+        <h2 className="mt-3">{weatherData.name}</h2>
+        <h4> Description : {weatherDescription}</h4>
+        <h1 className="font">⛈</h1>
+        <div className="d-flex justify-content-evenly mt-5">
+
           <h3 className="temperature-card shadow">
-            Temperature{" "}
-            <WeatherCard temp={(weatherData?.main?.temp - 273).toFixed(2)} />
-            °C
+            Temperature
+            <WeatherCard className="text fs-5" temp={`${(weatherData?.main?.temp - 273).toFixed(2)}°C`} />
           </h3>
+
           <h3 className="temperature-card shadow ">
-            Visibility <VisibilityCard visibility={weatherData?.visibility} />
-            meters
+            Visibility <VisibilityCard className="text fs-5" visibility={`${weatherData?.visibility}m`} />
+            
           </h3>
+
           <h3 className="temperature-card shadow ">
-            Visibility <VisibilityCard visibility={weatherData?.visibility} />
-            meters
+            Humidity <HumidityCard className="text fs-5" humidity={`${weatherData?.main?.humidity}%`} />
           </h3>
+
         </div>
 
         {/* <img src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}@2x.png`} />  */}
-        {/* <p> Description : {weatherDescription}</p> */}
         {/* <h5>Visibility :{weatherData?.visibility} meters</h5> */}
       </div>
     </>

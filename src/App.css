@@ -3,28 +3,38 @@
 }
 
 .content{
-  width: 800px;
-  height: 500px;
-  margin: 20px auto;
+  /* width: 800px; */
+  margin:0 auto;
+  margin-top: 10px;
   padding: 10px;
   border-radius: 20px;
 }
 
 .input-box{
-  margin-top: 50px;
-  width: 300px;
+  margin-top: 30px;
+  width: 500px;
   border: 1px solid black;
   border-radius: 10px;
-  padding: 5px;
+  padding: 10px 10px;
 
 }
 
 .temperature-card{
   border: 1px solid black;
+  text-align: center;
   border-radius: 10px;
-  width: 200px;
-  padding: 30px;
+  width: 180px;
+  padding: 15px;
   color: #000;
-  background-color: transparent rgb(144, 130, 159);
+  background-color:  rgb(255, 255, 255, 0.3);
 
+}
+
+.font{
+  font-size: 100px;
+}
+
+.text{
+  text-align: center;
+  font-size: 10px;
 }
